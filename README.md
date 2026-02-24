@@ -66,7 +66,7 @@ Sistem manajemen appointment klinik/dokter berbasis web menggunakan Laravel dan 
 
 - **Backend**: Laravel 11
 - **Admin Panel**: Filament PHP v3
-- **Database**: SQLite/MySQL/PostgreSQL
+- **Database**: PostgreSQL
 - **Frontend**: Tailwind CSS
 
 ## Instalasi
@@ -76,7 +76,7 @@ Sistem manajemen appointment klinik/dokter berbasis web menggunakan Laravel dan 
 - PHP >= 8.2
 - Composer
 - Node.js & NPM
-- SQLite (default) atau MySQL/PostgreSQL
+- PostgreSQL
 
 ### Langkah Instalasi
 
@@ -104,11 +104,11 @@ Sistem manajemen appointment klinik/dokter berbasis web menggunakan Laravel dan 
    DB_CONNECTION=sqlite
    
    # atau MySQL
-   DB_CONNECTION=mysql
+   DB_CONNECTION=postgres
    DB_HOST=127.0.0.1
-   DB_PORT=3306
+   DB_PORT=5432
    DB_DATABASE=medical_app
-   DB_USERNAME=root
+   DB_USERNAME=
    DB_PASSWORD=
    ```
 

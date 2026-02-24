@@ -2,7 +2,8 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Pages\CsAppointmentPage;
+use App\Filament\Pages\CsBookingListPage;
+use App\Filament\Pages\CsCreateAppointmentPage;
 use App\Filament\Pages\DoctorConsole;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -38,8 +39,10 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
                 // Registrasi DoctorConsole page untuk tampil di sidebar (hanya untuk dokter)
                 DoctorConsole::class,
-                // Registrasi CsAppointmentPage untuk tampil di sidebar (hanya untuk CS)
-                CsAppointmentPage::class,
+                // Registrasi halaman CS untuk membuat appointment (hanya untuk CS/Admin)
+                CsCreateAppointmentPage::class,
+                // Registrasi halaman CS untuk melihat daftar appointment (hanya untuk CS/Admin)
+                CsBookingListPage::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([

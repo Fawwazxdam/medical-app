@@ -17,14 +17,13 @@ use Filament\Pages\Page;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * CsAppointmentPage
+ * CsCreateAppointmentPage
  * 
  * Halaman custom untuk CS (Customer Service) membuat appointment baru.
- * CS dapat memilih pasien, dokter, dan waktu appointment.
  * 
- * Akses: Hanya untuk user dengan role 'cs'
+ * Akses: Hanya untuk user dengan role 'cs' atau 'admin'
  */
-class CsAppointmentPage extends Page implements HasForms
+class CsCreateAppointmentPage extends Page implements HasForms
 {
     use InteractsWithForms;
 
@@ -41,7 +40,7 @@ class CsAppointmentPage extends Page implements HasForms
     /**
      * Icon untuk navigation
      */
-    protected static ?string $navigationIcon = 'heroicon-o-calendar';
+    protected static ?string $navigationIcon = 'heroicon-o-plus-circle';
 
     /**
      * Urutan navigation di sidebar
@@ -49,9 +48,14 @@ class CsAppointmentPage extends Page implements HasForms
     protected static ?int $navigationSort = 2;
 
     /**
+     * Navigation Group
+     */
+    protected static ?string $navigationGroup = 'Manajemen Appointment';
+
+    /**
      * View file untuk halaman ini
      */
-    protected static string $view = 'filament.pages.cs-appointment';
+    protected static string $view = 'filament.pages.cs-create-appointment';
 
     /**
      * Data form
@@ -59,12 +63,11 @@ class CsAppointmentPage extends Page implements HasForms
     public ?array $data = [];
 
     /**
-     * Otorisasi akses - hanya untuk CS
-     * Halaman ini hanya bisa diakses oleh user dengan role 'cs'
+     * Otorisasi akses - untuk CS dan Admin
      */
     public static function canAccess(): bool
     {
-        return Auth::check() && Auth::user()->role === 'admin';
+        return Auth::check() && in_array(Auth::user()->role, ['cs', 'admin']);
     }
 
     /**
@@ -106,14 +109,17 @@ class CsAppointmentPage extends Page implements HasForms
 
                         DatePicker::make('date_of_birth')
                             ->label('Tanggal Lahir')
+                            ->required()
                             ->displayFormat('d/m/Y'),
 
                         TextInput::make('phone_number')
                             ->label('Nomor Telepon')
-                            ->tel(),
+                            ->tel()
+                            ->required(),
 
                         TextInput::make('address')
                             ->label('Alamat')
+                            ->required()
                             ->maxLength(500),
                     ])
                     // Closure untuk menyimpan pasien baru dan mengembalikan ID

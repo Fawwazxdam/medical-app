@@ -104,7 +104,7 @@ Sistem manajemen appointment klinik/dokter berbasis web menggunakan Laravel dan 
    DB_CONNECTION=sqlite
    
    # atau MySQL
-   DB_CONNECTION=postgres
+   DB_CONNECTION=pgsql
    DB_HOST=127.0.0.1
    DB_PORT=5432
    DB_DATABASE=medical_app
@@ -130,7 +130,7 @@ Sistem manajemen appointment klinik/dokter berbasis web menggunakan Laravel dan 
 
 8. **Akses Aplikasi**
    
-   Buka browser: `http://localhost:8000/admin`
+   Buka browser: `http://localhost:8000/`
 
 ## Akun Default
 
@@ -169,36 +169,6 @@ MedicalRecord
   ├── belongsTo ──▶ Booking
   ├── belongsTo ──▶ Patient
   └── belongsTo ──▶ User (Doctor)
-```
-
-## Pengembangan
-
-### Membuat CS User
-
-Untuk membuat user CS baru, gunakan tinker atau buat seeder:
-
-```bash
-php artisan tinker
-```
-
-```php
-\App\Models\User::create([
-    'name' => 'CS Name',
-    'email' => 'cs@g.c',
-    'password' => bcrypt('password'),
-    'role' => 'cs',
-]);
-```
-
-### Membuat Doctor User
-
-```php
-\App\Models\User::create([
-    'name' => 'Dr. Name',
-    'email' => 'doctor2@g.c',
-    'password' => bcrypt('password'),
-    'role' => 'doctor',
-]);
 ```
 
 ## License
